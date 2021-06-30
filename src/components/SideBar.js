@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { DonutLarge, Chat, MoreHoriz, Search } from '@material-ui/icons'
+import { DonutLarge, MoreHoriz, Search, AddOutlined } from '@material-ui/icons'
 import { Avatar, IconButton } from '@material-ui/core';
 import SideBarRoom from './SideBarRoom'
 import my_pics from '../resources/images/Nurudeen.jpg'
@@ -17,7 +17,7 @@ const SideBar = () => {
                     </IconButton>
 
                     <IconButton>
-                        <Chat />
+                        <AddOutlined />
                     </IconButton>
 
                     <IconButton>
@@ -114,4 +114,17 @@ const SideBarRooms = styled.div`
     left: 0;
     bottom: 0;
     overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+        
+    &::-webkit-scrollbar-track {
+        background-color: white;
+    }
+        
+    &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        border-radius: 5px;
+    }
 `
