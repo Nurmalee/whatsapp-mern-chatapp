@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { AttachFile, MoreVert, Search } from '@material-ui/icons'
+import { AttachFile, MoreHoriz, Search, VideocamOutlined, PhoneOutlined } from '@material-ui/icons'
 import { Avatar, IconButton } from '@material-ui/core';
 import my_pics from '../resources/images/Nurudeen.jpg'
 import ChatBody from './ChatBody';
@@ -18,15 +18,23 @@ const ChatBox = () => {
 
                 <Icons>
                     <IconButton>
-                        <Search />
-                    </IconButton>
-
-                    <IconButton>
                         <AttachFile />
                     </IconButton>
 
                     <IconButton>
-                        <MoreVert />
+                        <VideocamOutlined />
+                    </IconButton>
+
+                    <IconButton>
+                        <PhoneOutlined />
+                    </IconButton>
+
+                    <IconButton>
+                        <Search />
+                    </IconButton>
+
+                    <IconButton>
+                        <MoreHoriz />
                     </IconButton>
                 </Icons>
             </ChatBoxHeader>
