@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { DonutLarge, Chat, MoreVert, Search } from '@material-ui/icons'
+import { DonutLarge, Chat, MoreHoriz, Search } from '@material-ui/icons'
 import { Avatar, IconButton } from '@material-ui/core';
 import SideBarRoom from './SideBarRoom'
 import my_pics from '../resources/images/Nurudeen.jpg'
@@ -21,7 +21,7 @@ const SideBar = () => {
                     </IconButton>
 
                     <IconButton>
-                        <MoreVert />
+                        <MoreHoriz />
                     </IconButton>
 
                 </SideBarHeaderRight>
@@ -34,6 +34,14 @@ const SideBar = () => {
                 </SideBarInput>
 
                 <SideBarRooms>
+                    <SideBarRoom />
+                    <SideBarRoom />
+                    <SideBarRoom />
+
+                    <SideBarRoom />
+                    <SideBarRoom />
+                    <SideBarRoom />
+
                     <SideBarRoom />
                     <SideBarRoom />
                     <SideBarRoom />
@@ -66,10 +74,9 @@ const SideBarHeaderRight = styled.div`
 `
 
 const SideBarBody = styled.div`
-    display: flex;
-    flex-direction: column;
     flex: 1;
     background-color: #dadbd3;
+    position: relative;
 `
 
 const SideBarInput = styled.div`
@@ -87,6 +94,7 @@ const SideBarInput = styled.div`
 
     > input {
         font-family: 'Roboto', sans-serif;
+        font-weight: 100;
         flex: 1;
         border-radius: 20px;
         padding: 1px 10px;
@@ -100,7 +108,10 @@ const SideBarInput = styled.div`
 
 const SideBarRooms = styled.div`
     background-color: white;
-    flex: 1;
-    /* height: 450px; */
-    /* overflow-y: scroll; */
+    position: absolute;
+    top: 52px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: scroll;
 `
