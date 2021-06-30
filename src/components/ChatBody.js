@@ -16,6 +16,6 @@ const ChatBodyContainer = styled.div`
     background-image: url(${chat_background});
     background-repeat: repeat;
     background-position: center;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     padding: 30px;
 `
