@@ -1,9 +1,23 @@
 import styled from 'styled-components'
+import ChatMessage from './ChatMessage'
 import chat_background from '../resources/images/whatsapp-chat-background.png'
 
 const ChatBody = () => {
     return (
         <ChatBodyContainer>
+            <ChatMessage message="This is the First Message HERE!!!" />
+            <ChatMessage message="Whassss going on HIAA!!!" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            <ChatMessage message="This is just a TEST Message" />
+            
+            
             
         </ChatBodyContainer>
     )
@@ -16,6 +30,20 @@ const ChatBodyContainer = styled.div`
     background-image: url(${chat_background});
     background-repeat: repeat;
     background-position: center;
-    /* overflow-y: scroll; */
+    position: relative;
+    overflow-y: scroll;
     padding: 30px;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+        
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+        
+    &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        border-radius: 5px;
+    }
 `

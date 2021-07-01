@@ -1,15 +1,16 @@
 import styled from 'styled-components'
 import { AttachFile, MoreHoriz, Search, VideocamOutlined, PhoneOutlined } from '@material-ui/icons'
 import { Avatar, IconButton } from '@material-ui/core';
-import my_pics from '../resources/images/Nurudeen.jpg'
+// import my_pics from '../resources/images/Nurudeen.jpg'
 import ChatBody from './ChatBody';
+import ChatForm from './ChatForm'
 
 const ChatBox = () => {
     return (
         <ChatBoxContainer>
             <ChatBoxHeader>
 
-                <Avatar src={my_pics} />
+                <Avatar src={`https://avatars.dicebear.com/api/micah/:seed.svg`} />
 
                 <ActiveChatRoom>
                     <h2>Room Name</h2>
@@ -40,6 +41,7 @@ const ChatBox = () => {
             </ChatBoxHeader>
 
             <ChatBody />
+            <ChatForm />
         </ChatBoxContainer>
     )
 }
