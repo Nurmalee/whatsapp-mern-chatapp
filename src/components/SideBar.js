@@ -1,10 +1,24 @@
 import styled from 'styled-components'
+import { useState, useEffect } from 'react'
 import { DonutLarge, MoreHoriz, Search, AddOutlined } from '@material-ui/icons'
-import { Avatar, IconButton } from '@material-ui/core';
+import { Avatar, IconButton } from '@material-ui/core'
 import SideBarRoom from './SideBarRoom'
 import my_pics from '../resources/images/Nurudeen.jpg'
+import db from '../config/firebase'
 
 const SideBar = () => {
+
+    const [chatRooms, setChatRooms] = useState([])
+
+    useEffect(() => {
+        db.collection('chat-rooms').onSnapshot(snapshot => {
+            setChatRooms(snapshot.docs.map(doc => ({
+                id: doc.id,
+                data: doc.data()
+            })))
+        })
+    }, [])
+
     return (
         <SideBarContainer>
             <SideBarHeader>
@@ -34,17 +48,9 @@ const SideBar = () => {
                 </SideBarInput>
 
                 <SideBarRooms>
-                    <SideBarRoom />
-                    <SideBarRoom />
-                    <SideBarRoom />
-
-                    <SideBarRoom />
-                    <SideBarRoom />
-                    <SideBarRoom />
-
-                    <SideBarRoom />
-                    <SideBarRoom />
-                    <SideBarRoom />
+                    {
+                        chatRooms.map(room => <SideBarRoom key={room.id} id={room.id} roomname={room.data.name} />)
+                    }
                 </SideBarRooms>
             </SideBarBody>
         </SideBarContainer>

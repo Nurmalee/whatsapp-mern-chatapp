@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Avatar } from '@material-ui/core'
 // import my_pics from '../resources/images/Nurudeen.jpg'
 
-const SideBarRoom = () => {
+const SideBarRoom = ({roomname}) => {
 
     const [seed, setSeed] = useState(0)
 
@@ -17,7 +17,7 @@ const SideBarRoom = () => {
             <Avatar src={`https://avatars.dicebear.com/api/micah/${seed}.svg`} />
 
             <RoomDetails>
-                <h2>Room Name</h2>
+                <h2>{roomname}</h2>
                 <p>Last Message...</p>
             </RoomDetails>
             
