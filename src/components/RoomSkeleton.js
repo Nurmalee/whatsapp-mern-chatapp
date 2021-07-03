@@ -48,7 +48,7 @@ const SkeletonDetails = styled.div`
 
     > p {
         height: 15px;
-        width: 75%;
+        width: 50%;
         background-color: #ededed;
     }
 `
