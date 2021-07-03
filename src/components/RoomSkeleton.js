@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 const RoomSkeleton = () => {
     return (
@@ -8,6 +8,9 @@ const RoomSkeleton = () => {
                 <div></div>
                 <p></p>
             </SkeletonDetails>
+            <ShinnerWrapper>
+                <Shinner />
+            </ShinnerWrapper>
         </RoomSkeletonContainer>
     )
 }
@@ -19,6 +22,8 @@ const RoomSkeletonContainer = styled.div`
     align-items: center;
     padding: 0 20px;
     padding-right: 0;
+    position: relative;
+    overflow: hidden;
 `
 
 const AvatarSkeleton = styled.div`
@@ -46,4 +51,32 @@ const SkeletonDetails = styled.div`
         width: 75%;
         background-color: #ededed;
     }
+`
+
+const shinner = keyframes`
+  0% {
+    transform: translateX(-150%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(150%);
+  }
+`
+
+const ShinnerWrapper = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    animation: ${shinner} 1.5s infinite;
+`
+
+const Shinner = styled.div`
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: skewX(30deg);
+    height: 100%;
+    width: 80%;
 `
