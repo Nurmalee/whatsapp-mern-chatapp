@@ -76,7 +76,8 @@ const ShinnerWrapper = styled.div`
 
 const Shinner = styled.div`
     background-color: rgba(255, 255, 255, 0.4);
-    transform: skewX(30deg);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+    transform: skewX(15deg);
     height: 100%;
     width: 80%;
 `
