@@ -33,7 +33,7 @@ const SideBar = () => {
             }))
             setInitialRooms(documents)
             setChatRooms(documents)
-            setLoading(false)
+            documents.length > 0 && setLoading(false)  
         })
 
         return () => subscribe()
@@ -82,7 +82,7 @@ const SideBar = () => {
                         chatRooms.map(room => <SideBarRoom key={room.id} id={room.id} roomname={room.data.name} />)
                     }
                     {
-                        loading && [1,2,3,4,5].map(n =>   <RoomSkeleton />)
+                        loading && [1,2,3,4,5, 7,8,9,10,11].map(n => <RoomSkeleton key={n} id={n} />)
                     }
                 </SideBarRooms>
             </SideBarBody>
