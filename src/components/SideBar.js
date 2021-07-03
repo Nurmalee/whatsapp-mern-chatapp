@@ -33,7 +33,7 @@ const SideBar = () => {
             }))
             setInitialRooms(documents)
             setChatRooms(documents)
-            documents.length > 0 && setLoading(false)  
+            documents.length < 0 && setLoading(false)  
         })
 
         return () => subscribe()
