@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import { Avatar } from '@material-ui/core'
-// import my_pics from '../resources/images/Nurudeen.jpg'
+import BackspaceIcon from '@material-ui/icons/Backspace'
+import db from '../config/firebase'
 
-const SideBarRoom = ({roomname}) => {
+const SideBarRoom = ({roomname, id}) => {
 
     const [seed, setSeed] = useState(0)
 
@@ -11,13 +12,17 @@ const SideBarRoom = ({roomname}) => {
         setSeed(Math.floor(Math.random() * 9000 ))
     }, [])
 
+    const deleteRoom = () => {
+        db.collection('chat-rooms').doc(id).delete()
+    }
+
     return (
         <SingleRoom draggable={true}>
 
             <Avatar src={`https://avatars.dicebear.com/api/micah/${seed}.svg`} />
 
             <RoomDetails>
-                <h2>{roomname}</h2>
+                <h2>{roomname} <BackspaceIcon onClick={() => deleteRoom(id)} /> </h2>
                 <p>Last Message...</p>
             </RoomDetails>
             
@@ -36,6 +41,10 @@ const SingleRoom = styled.div`
 
     &:hover {
         background-color: #ededed;
+       
+        .MuiSvgIcon-root {
+            visibility: visible;
+        }
     }
 `
 
@@ -48,6 +57,17 @@ const RoomDetails = styled.div`
 
     > h2 {
         font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 10px;
+
+        > .MuiSvgIcon-root {
+            font-size: 20px;
+            color: grey;
+            visibility: hidden;
+            transition: 500ms ease-in-out;
+        }
     }
 
     > p {
