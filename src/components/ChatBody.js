@@ -2,23 +2,17 @@ import styled from 'styled-components'
 import ChatMessage from './ChatMessage'
 import chat_background from '../resources/images/whatsapp-chat-background.png'
 
-const ChatBody = () => {
+const ChatBody = ({roomMessages}) => {
     return (
         <ChatBodyContainer>
-            <ChatMessage message="This is the First Message HERE!!!" />
-            <ChatMessage message="Whassss going on HIAA!!!" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            <ChatMessage message="This is just a TEST Message" />
-            
-            
-            
+            {
+                roomMessages.map(messageBody => {
+                    const {message, timestamp, sender} = messageBody.data
+                    return (
+                        <ChatMessage key={messageBody.id} id={messageBody.id} message={message} sender={sender} timestamp={timestamp} />
+                    )
+                })
+            }
         </ChatBodyContainer>
     )
 }
