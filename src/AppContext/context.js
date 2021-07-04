@@ -14,6 +14,8 @@ export const StateProvider = ({children}) => {
         .catch(error => alert(error.message))
     }
 
+    const signOut = () => auth.signOut()
+
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -22,7 +24,7 @@ export const StateProvider = ({children}) => {
     })
 
     return (
-        <StateContext.Provider value={{currentUser, signInWithGoogle}}>
+        <StateContext.Provider value={{currentUser, signInWithGoogle, signOut}}>
             {!loading && children}
         </StateContext.Provider>
     )

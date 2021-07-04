@@ -4,8 +4,9 @@ import { DonutLarge, MoreHoriz, Search, AddOutlined } from '@material-ui/icons'
 import { Avatar, IconButton } from '@material-ui/core'
 import SideBarRoom from './SideBarRoom'
 import RoomSkeleton from './RoomSkeleton'
-import my_pics from '../resources/images/Nurudeen.jpg'
 import db from '../config/firebase'
+import { useStateContext } from '../AppContext/context'
+
 
 // const demoRooms = [
 //     {
@@ -19,7 +20,7 @@ import db from '../config/firebase'
 // ]
 
 const SideBar = () => {
-
+    const {currentUser, signOut} = useStateContext()
     const [loading, setLoading] = useState(true)
     const [initialRooms, setInitialRooms] = useState([])
     const [chatRooms, setChatRooms] = useState([])
@@ -75,12 +76,12 @@ const SideBar = () => {
     return (
         <SideBarContainer>
             <SideBarHeader>
-                <Avatar src={my_pics} />
+                <Avatar src={currentUser?.photoURL} />
 
                 <SideBarHeaderRight>
 
                     <IconButton>
-                        <DonutLarge />
+                        <DonutLarge onClick={signOut} />
                     </IconButton>
 
                     <IconButton>

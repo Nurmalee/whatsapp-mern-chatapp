@@ -8,6 +8,7 @@ import { useStateContext } from './AppContext/context'
 const App = () => {
   
   const {currentUser} = useStateContext()
+  // console.log(currentUser);
 
   if(!currentUser){
     return (
