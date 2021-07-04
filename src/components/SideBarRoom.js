@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Avatar } from '@material-ui/core'
 import BackspaceIcon from '@material-ui/icons/Backspace'
 import db from '../config/firebase'
+import {Link} from 'react-router-dom'
 
 const SideBarRoom = ({roomname, id}) => {
 
@@ -16,17 +17,28 @@ const SideBarRoom = ({roomname, id}) => {
         db.collection('chat-rooms').doc(id).delete()
     }
 
+    const style ={
+        color: 'black',
+        textDecoration: 'none'
+    }
+
     return (
-        <SingleRoom draggable={true}>
+        <Link to={`/rooms/${id}`} style={style}>
+            <SingleRoom draggable={true}>
 
-            <Avatar src={`https://avatars.dicebear.com/api/micah/${seed}.svg`} />
+                <Avatar src={`https://avatars.dicebear.com/api/micah/${seed}.svg`} />
 
-            <RoomDetails>
-                <h2>{roomname} <BackspaceIcon onClick={() => deleteRoom(id)} /> </h2>
-                <p>Last Message...</p>
-            </RoomDetails>
-            
-        </SingleRoom>
+                <RoomDetails>
+                    <h2>
+                        {roomname} 
+                        <BackspaceIcon onClick={() => deleteRoom(id)} /> 
+                        <span>Delete</span>    
+                    </h2>
+                    <p>Last Message...</p>
+                </RoomDetails>
+                
+            </SingleRoom>
+        </Link>
     )
 }
 
@@ -38,11 +50,12 @@ const SingleRoom = styled.div`
     padding: 0 20px;
     padding-right: 0;
     cursor: pointer;
+    transition: 300ms ease-in-out;
 
     &:hover {
         background-color: #ededed;
        
-        .MuiSvgIcon-root {
+        .MuiSvgIcon-root, div > h2 > span {
             visibility: visible;
         }
     }
@@ -61,12 +74,27 @@ const RoomDetails = styled.div`
         align-items: center;
         justify-content: space-between;
         padding-right: 10px;
+        position: relative;
 
         > .MuiSvgIcon-root {
             font-size: 20px;
             color: grey;
             visibility: hidden;
-            transition: 500ms ease-in-out;
+            transition: 200ms ease-in-out;
+
+            &:hover {
+                color: brown;
+            }
+        }
+
+        > span {
+            font-size: 9px;
+            color: grey;
+            position: absolute;
+            right: 10px;
+            bottom: -15px;
+            visibility: hidden;
+            transition: 200ms ease-in-out;
         }
     }
 
