@@ -1,13 +1,18 @@
 import styled from 'styled-components'
+import { useStateContext } from '../AppContext/context'
+import './trick.css'
 
 const ChatMessage = ({message, timestamp, sender}) => {
+
+    const {currentUser} = useStateContext()
+
     return (
-        <ChatMessageContainer className={true && `received`}>
+        <ChatMessageContainer >
             <span>{sender}</span>
            
-            <MessageDetails>
+            <MessageDetails className={currentUser ? 'sent' : `received`}>
                 {message}
-                <span>Thu, 12:59AM</span>
+                <span>{new Date(timestamp?.toDate()).toUTCString()}</span>
             </MessageDetails>
         </ChatMessageContainer>
     )
@@ -16,16 +21,10 @@ const ChatMessage = ({message, timestamp, sender}) => {
 export default ChatMessage
 
 const ChatMessageContainer = styled.div`
-
-    .received {
-        background-color: lightgreen;
-    }
-
     > span {
         font-size: 11px;
         padding-left: 10px;
     }
-
 `
 
 const MessageDetails = styled.p`

@@ -56,7 +56,7 @@ const SideBar = () => {
     const addRoom = (e) => {
         e.preventDefault()
 
-        const suffix = ['Room', 'Hub', 'Chat', 'ChatRoom', 'Square', 'Clique', 'Crew']
+        const suffix = ['Room', 'Hub', 'Chat', 'ChatRoom', 'Square', 'Clique', 'Crew', 'Forum']
         const randomSuffix = suffix[Math.floor(Math.random() * suffix.length)]
 
         const newRoom = pendingRoom.charAt(0).toUpperCase() + pendingRoom.slice(1)
@@ -80,8 +80,8 @@ const SideBar = () => {
 
                 <SideBarHeaderRight>
 
-                    <IconButton>
-                        <DonutLarge onClick={signOut} />
+                    <IconButton onClick={signOut}>
+                        <DonutLarge />
                     </IconButton>
 
                     <IconButton>

@@ -5,10 +5,11 @@ import ChatBody from './ChatBody';
 import ChatForm from './ChatForm'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
-import db from '../config/firebase'
+import db, { serverTimestamp } from '../config/firebase'
+import { useStateContext } from '../AppContext/context';
 
 const ChatBox = () => {
-
+    const {currentUser} = useStateContext()
     const {roomId} = useParams()
     const [roomName, setRoomName] = useState('')
     const [roomMessages, setRoomMessages] = useState([])
@@ -16,14 +17,14 @@ const ChatBox = () => {
     const writeMessage = (input) => {
         db.collection('chat-rooms').doc(roomId).collection('messages').add({
             message: input,
-            timestamp: new Date().getTime(),
-            sender: 'Lawal Nurudeen'
+            createdAt: serverTimestamp,
+            sender: currentUser.displayName
         })
     }
 
     useEffect(() => {
         if(roomId){
-            const subscribe = db.collection('chat-rooms').doc(roomId).collection('messages').orderBy('timestamp', 'asc').onSnapshot(snapshot => {
+            const subscribe = db.collection('chat-rooms').doc(roomId).collection('messages').orderBy('createdAt', 'asc').onSnapshot(snapshot => {
                 const documents = snapshot.docs.map(doc => ({
                     id: doc.id,
                     data: doc.data()

@@ -7,9 +7,9 @@ const ChatBody = ({roomMessages}) => {
         <ChatBodyContainer>
             {
                 roomMessages.map(messageBody => {
-                    const {message, timestamp, sender} = messageBody.data
+                    const {message, createdAt, sender} = messageBody.data
                     return (
-                        <ChatMessage key={messageBody.id} id={messageBody.id} message={message} sender={sender} timestamp={timestamp} />
+                        <ChatMessage key={messageBody.id} id={messageBody.id} message={message} sender={sender} timestamp={createdAt} />
                     )
                 })
             }
