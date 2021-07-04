@@ -3,12 +3,13 @@ import { useState } from 'react'
 import { InsertEmoticonOutlined, MicOutlined } from '@material-ui/icons';
 import { IconButton } from '@material-ui/core'
 
-const ChatForm = () => {
+const ChatForm = ({writeMessage}) => {
 
     const [message, setMessage] = useState('')
 
     const handleForm = (e) => {
         e.preventDefault()
+        writeMessage(message)
         setMessage('')
     }
 
