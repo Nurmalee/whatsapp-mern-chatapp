@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-const ChatMessage = ({message}) => {
+const ChatMessage = ({message, timestamp, sender}) => {
     return (
         <ChatMessageContainer className={true && `received`}>
-            <span>Lawal Nurudeen</span>
+            <span>{sender}</span>
            
             <MessageDetails>
                 {message}
