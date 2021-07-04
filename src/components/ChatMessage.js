@@ -8,10 +8,9 @@ const ChatMessage = ({message, timestamp, sender}) => {
 
     return (
         <ChatMessageContainer >
-            <span>{sender}</span>
-           
-            <MessageDetails className={currentUser ? 'sent' : `received`}>
+            <MessageDetails className={sender !== currentUser.displayName && 'received'}>
                 {message}
+                <span>{sender}</span>
                 <span>{new Date(timestamp?.toDate()).toUTCString()}</span>
             </MessageDetails>
         </ChatMessageContainer>
@@ -21,10 +20,6 @@ const ChatMessage = ({message, timestamp, sender}) => {
 export default ChatMessage
 
 const ChatMessageContainer = styled.div`
-    > span {
-        font-size: 11px;
-        padding-left: 10px;
-    }
 `
 
 const MessageDetails = styled.p`
@@ -32,11 +27,21 @@ const MessageDetails = styled.p`
     border-radius: 15px;
     width: fit-content;
     padding: 10px;
-    margin: 2px 0 15px 0;
+    margin: 2px 0 30px 0;
     background-color: white;
+    position: relative;
 
     > span {
-        font-size: 11px;
+
+        &:first-of-type{
+            font-size: 9px;
+            position: absolute;
+            left: 0;
+            top: -15px;
+            margin-left: 10px;
+        }
+
+        font-size: 9px;
         margin-left: 25px;
     }
 

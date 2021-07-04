@@ -1,9 +1,4 @@
 .received {
-    background-color: lightgreen;
+    background-color: #cbffcb;
     margin-left: auto;
-}
-
-.sent {
-    background-color: white;
-    margin-right: auto;
 }
