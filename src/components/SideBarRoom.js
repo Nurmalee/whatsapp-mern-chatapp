@@ -1,21 +1,26 @@
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import { Avatar } from '@material-ui/core'
-import BackspaceIcon from '@material-ui/icons/Backspace'
-import db from '../config/firebase'
-import {Link} from 'react-router-dom'
+// import BackspaceIcon from '@material-ui/icons/Backspace'
+// import db from '../config/firebase'
+import { Link } from 'react-router-dom'
 
 const SideBarRoom = ({roomname, id}) => {
 
     const [seed, setSeed] = useState(0)
-
     useEffect(() => {
         setSeed(Math.floor(Math.random() * 9000 ))
     }, [])
 
-    const deleteRoom = () => {
-        db.collection('chat-rooms').doc(id).delete()
-    }
+    // const hideRoom = () => {
+    //     const unhiddenRooms = initialRooms.filter(room => id !== room.id)
+    //     setChatRooms(unhiddenRooms)
+    //     history.push('/rooms')
+    // }
+
+    // const deleteRoom = () => {
+    //     db.collection('chat-rooms').doc(id).delete()
+    // }
 
     const style ={
         color: 'black',
@@ -31,8 +36,8 @@ const SideBarRoom = ({roomname, id}) => {
                 <RoomDetails>
                     <h2>
                         {roomname} 
-                        <BackspaceIcon onClick={() => deleteRoom(id)} /> 
-                        <span>Delete</span>    
+                        {/* <BackspaceIcon onClick={() => deleteRoom(id)} /> 
+                        <span>Delete</span> */}
                     </h2>
                     <p>Last Message...</p>
                 </RoomDetails>

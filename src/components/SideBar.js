@@ -33,7 +33,7 @@ const SideBar = () => {
                 id: doc.id,
                 data: doc.data()
             }))
-            documents.length > 0 && setLoading(false)  
+            documents.length > 0 && setLoading(false)
             setInitialRooms(documents)
             setChatRooms(documents)
         })
@@ -108,9 +108,9 @@ const SideBar = () => {
                 </SideBarInput>
 
                 <SideBarRooms>
-                    {/* {
-                        chatRooms.length < 0 && <p>Add a new group to start chatting</p>
-                    } */}
+                    {
+                        (!loading && chatRooms.length < 0) && <p>Add a new group to start chatting</p>
+                    }
                     {
                         chatRooms.map(room => <SideBarRoom key={room.id} id={room.id} roomname={room.data.name} />)
                     }
