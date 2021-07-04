@@ -1,23 +1,32 @@
 import styled from 'styled-components'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import SideBar from './components/SideBar'
 import ChatBox from './components/ChatBox'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import SignIn from './components/SignIn'
+import { useStateContext } from './AppContext/context'
 
 const App = () => {
+  
+  const {currentUser} = useStateContext()
+
+  if(!currentUser){
+    return (
+      <AppContainer>
+        <SignIn />
+      </AppContainer>
+    )
+  }
+
   return (
     <AppContainer>
-
-      <AppBody>
-        <Router>
-          <SideBar />
-          <Switch>
-            {/* <Route path='/'>
-              <ChatBox />
-            </Route> */}
-            <Route path='/rooms/:roomId' component={ChatBox} />
-          </Switch>
-        </Router>
-      </AppBody>
+        <AppBody>
+          <Router>
+            <SideBar />
+            <Switch>
+              <Route path='/rooms/:roomId' component={ChatBox} />
+            </Switch>
+          </Router>
+        </AppBody> 
     </AppContainer>
   )
 }
@@ -27,6 +36,8 @@ export default App
 const AppContainer = styled.main`
   display: grid;
   place-items: center;
+  height: 100vh;
+  min-height: 550px;
 `
 
 const AppBody = styled.div`
