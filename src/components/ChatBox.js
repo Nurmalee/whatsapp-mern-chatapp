@@ -54,7 +54,7 @@ const ChatBox = () => {
 
                 <ActiveChatRoom>
                     <h2>{roomName}</h2>
-                    <p>Last Seen at ...</p>
+                    <p>{new Date(roomMessages[0]?.createdAt?.toDate()).toUTCString()}</p>
                 </ActiveChatRoom>
 
                 <Icons>

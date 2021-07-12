@@ -2,11 +2,12 @@ import styled from 'styled-components'
 import { useState, useEffect } from 'react'
 import { Avatar } from '@material-ui/core'
 // import BackspaceIcon from '@material-ui/icons/Backspace'
-// import db from '../config/firebase'
+import db from '../config/firebase'
 import { Link } from 'react-router-dom'
 
 const SideBarRoom = ({roomname, id}) => {
 
+    const [roomMessages, setRoomMessages] = useState([])
     const [seed, setSeed] = useState(0)
     useEffect(() => {
         setSeed(Math.floor(Math.random() * 9000 ))
@@ -21,6 +22,12 @@ const SideBarRoom = ({roomname, id}) => {
     // const deleteRoom = () => {
     //     db.collection('chat-rooms').doc(id).delete()
     // }
+
+    useEffect(() => {
+        if(id){
+            db.collection('chat-rooms').doc(id).collection('messages').orderBy('createdAt', 'desc').onSnapshot(snapshot => setRoomMessages(snapshot.docs.map(doc => doc.data())))
+        }
+    }, [id])
 
     const style ={
         color: 'black',
@@ -39,7 +46,7 @@ const SideBarRoom = ({roomname, id}) => {
                         {/* <BackspaceIcon onClick={() => deleteRoom(id)} /> 
                         <span>Delete</span> */}
                     </h2>
-                    <p>Last Message...</p>
+                    <p>{roomMessages[0]?.message.substring(0,20)}.... <span>{roomMessages[0]?.sender.substring(0,4)}...</span></p>
                 </RoomDetails>
                 
             </SingleRoom>
@@ -104,6 +111,15 @@ const RoomDetails = styled.div`
     }
 
     > p {
-        font-size: 12px;
+        font-size: 9px;
+        padding-right: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        > span {
+            margin-left: 10px;
+            font-size: 7px;
+        }
     }
 `

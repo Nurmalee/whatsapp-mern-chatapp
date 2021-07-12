@@ -204,7 +204,7 @@ const SideBarRooms = styled.div`
         width: 5px;
     }
         
-    &::-webkit-scrollbar-track {
+    &::-webkit-scrollbar-track {  
         background-color: white;
     }
         
